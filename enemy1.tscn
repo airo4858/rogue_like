@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjktnyqj04sp4"]
+
+[ext_resource type="Script" path="res://enemy_1.gd" id="1_7l60d"]
+[ext_resource type="Script" path="res://idle_enemy1.gd" id="1_hgt82"]
+[ext_resource type="Script" path="res://state_machine.gd" id="2_xpb28"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xv071"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dggi7"]
+
+[node name="Enemy1" type="CharacterBody2D"]
+script = ExtResource("1_7l60d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(19, 20)
+texture = SubResource("CanvasTexture_xv071")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dggi7")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_xpb28")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("1_hgt82")
