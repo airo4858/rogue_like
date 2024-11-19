@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ofhywutmpmqg"]
+[gd_scene load_steps=10 format=3 uid="uid://ofhywutmpmqg"]
 
 [ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="1_78lnl"]
 [ext_resource type="Texture2D" uid="uid://7jrgiuyodbsk" path="res://Fence Block 2.png" id="2_jquw4"]
 [ext_resource type="Texture2D" uid="uid://byp5ogq4dcaqi" path="res://Isometric Grass Block 1.png" id="3_odaos"]
+[ext_resource type="Texture2D" uid="uid://xqnphvlssu3q" path="res://Isometric Tree 3x3 Block.png" id="4_l4rid"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1r67"]
 texture = ExtResource("1_78lnl")
@@ -19,6 +20,26 @@ texture = ExtResource("3_odaos")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78lyt"]
+texture = ExtResource("4_l4rid")
+texture_region_size = Vector2i(64, 32)
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+4:6/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ackgh"]
 tile_shape = 1
 tile_layout = 5
@@ -28,8 +49,9 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_6nkc1")
 sources/0 = SubResource("TileSetAtlasSource_n1r67")
 sources/1 = SubResource("TileSetAtlasSource_mlfpw")
+sources/3 = SubResource("TileSetAtlasSource_78lyt")
 
-[node name="YardMap" type="TileMap"]
+[node name="YardMap1" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_ackgh")
 collision_animatable = true
