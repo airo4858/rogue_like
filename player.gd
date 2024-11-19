@@ -3,20 +3,31 @@ extends CharacterBody2D
 @export var move_speed: float = 100.0
 
 var can_jump : bool = true
+var can_sweep : bool = true
+var can_stab : bool = true
 
 func jump(event):
-	get_tree().get_root().get_node("Main/Player/Hitbox").visible = false
-	can_jump = false
-	#Play Jump Animation
-	#await animation to finish
-	get_tree().get_root().get_node("Main/Player/Hitbox").visible = true
-	can_jump = true
+	if can_jump == true:
+		can_jump = false
+		$AnimationPlayer.play("beta_jump")
+		await $AnimationPlayer.animation_finished
+		can_jump = true
 
-#func sweep(event):
-	
+func sweep(event):
+	if can_sweep == true:
+		can_sweep = false
+		get_node("Sweep").look_at(get_global_mouse_position())
+		$AnimationPlayer.play("sweep_attack")
+		await $AnimationPlayer.animation_finished
+		can_sweep = true
 
-#func stab(event):
-	
+func stab(event):
+	if can_stab == true:
+		can_stab = false
+		get_node("Stab").look_at(get_global_mouse_position())
+		$AnimationPlayer.play("stab_attack")
+		await $AnimationPlayer.animation_finished
+		can_stab = true
 
 func _physics_process(delta):
 	if self.velocity == Vector2(0,1) * move_speed or self.velocity == Vector2(0,-1) * move_speed:
@@ -27,3 +38,11 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("jump")):
 		jump("jump")
 		print("JUMP!")
+		
+	if (Input.is_action_pressed("stab")):
+		stab("stab")
+		print("STAB")
+		
+	if (Input.is_action_pressed("sweep")):
+		sweep("sweep")
+		print("SWEEP")
