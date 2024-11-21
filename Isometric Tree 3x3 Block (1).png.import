@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xqnphvlssu3q"
-path="res://.godot/imported/Isometric Tree 3x3 Block.png-a49fb8d7a771179e752c7db62d75ba8c.ctex"
+uid="uid://qsjwlftjawi3"
+path="res://.godot/imported/Isometric Tree 3x3 Block (1).png-49f0967d576466b3e6d50413946c4072.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Isometric Tree 3x3 Block.png"
-dest_files=["res://.godot/imported/Isometric Tree 3x3 Block.png-a49fb8d7a771179e752c7db62d75ba8c.ctex"]
+source_file="res://Isometric Tree 3x3 Block (1).png"
+dest_files=["res://.godot/imported/Isometric Tree 3x3 Block (1).png-49f0967d576466b3e6d50413946c4072.ctex"]
 
 [params]
 
