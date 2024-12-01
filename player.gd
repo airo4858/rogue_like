@@ -13,7 +13,7 @@ func jump(event):
 		$AnimationPlayer.play("beta_jump")
 		await $AnimationPlayer.animation_finished
 		var overlap = $CollisionArea.get_overlapping_bodies()
-		if (not overlap.is_empty()):
+		if overlap.size() > 1:
 			self.position = initial_player_position
 		can_jump = true
 

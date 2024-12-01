@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [global_group]
 
 OutOfBounds=""
+Player=""
+Enemy=""
 
 [input]
 
