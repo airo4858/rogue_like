@@ -10,32 +10,40 @@ func jump(event):
 	if can_jump == true:
 		var initial_player_position = self.position
 		can_jump = false
+		can_sweep = false
+		can_stab = false
 		$AnimationPlayer.play("beta_jump")
 		await $AnimationPlayer.animation_finished
 		var overlap = $CollisionArea.get_overlapping_bodies()
 		if overlap.size() > 1:
 			self.position = initial_player_position
 		can_jump = true
+		can_sweep = true
+		can_stab = true
 
 func sweep(event):
 	if can_sweep == true:
 		can_sweep = false
 		can_stab = false
+		can_jump = false
 		get_node("Sweep").look_at(get_global_mouse_position())
 		$AnimationPlayer.play("sweep_attack")
 		await $AnimationPlayer.animation_finished
 		can_sweep = true
 		can_stab = true
+		can_jump = true
 
 func stab(event):
 	if can_stab == true:
 		can_stab = false
 		can_sweep = false
+		can_jump = false
 		get_node("Stab").look_at(get_global_mouse_position())
 		$AnimationPlayer.play("stab_attack")
 		await $AnimationPlayer.animation_finished
 		can_stab = true
 		can_sweep = true
+		can_jump = true
 
 func _physics_process(delta):
 	if self.velocity == Vector2(0,1) * move_speed or self.velocity == Vector2(0,-1) * move_speed:

@@ -286,6 +286,7 @@ _data = {
 size = Vector2(20, 40)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 17
 script = ExtResource("1_vwqdy")
 
 [node name="BetaSprite" type="Sprite2D" parent="."]

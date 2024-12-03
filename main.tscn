@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://jarktaase6ed"]
+[gd_scene load_steps=16 format=3 uid="uid://jarktaase6ed"]
 
 [ext_resource type="Script" path="res://state.gd" id="1_rqf0h"]
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_x5kxa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://byp5ogq4dcaqi" path="res://Isometric Grass Block 1.png" id="4_38iw3"]
 [ext_resource type="PackedScene" uid="uid://b7f1653id1i3k" path="res://player.tscn" id="5_sxxdb"]
 [ext_resource type="Texture2D" uid="uid://qsjwlftjawi3" path="res://Isometric Tree 3x3 Block (1).png" id="6_qxpkr"]
+[ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="8_v5vhg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sa6vg"]
 texture = ExtResource("2_h42dc")
@@ -66,6 +67,9 @@ tile_set = SubResource("TileSet_7s7e2")
 [node name="Player" parent="." instance=ExtResource("5_sxxdb")]
 y_sort_enabled = true
 position = Vector2(383, 185)
+
+[node name="Enemy1" parent="." instance=ExtResource("8_v5vhg")]
+position = Vector2(669, 187)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
 

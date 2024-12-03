@@ -2,6 +2,7 @@ extends Node
 class_name State
 
 signal change_state(new_state: State)
+var body : CharacterBody2D
 
 #var main_sprite : Sprite2D
 #var body : CharacterStateMachine

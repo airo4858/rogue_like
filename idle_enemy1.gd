@@ -3,14 +3,18 @@ class_name Enemy1_Idle
 
 var detect_range : Area2D
 var chasing_state : State
+var potential_targets : Array
 
 func initialize():
-	detect_range = get_node("DetectionRange")
+	detect_range = body.get_node("Detection")
 	chasing_state = get_parent().get_node("Chasing")
 	
 func process_state(delta: float):
-	var potential_targets = detect_range.get_overlapping_bodies()
+	print("Idle")
+	
+	potential_targets = detect_range.get_overlapping_bodies()
 	
 	if (not potential_targets.is_empty()):
 		chasing_state.target = (potential_targets[0] as CharacterBody2D)
-		change_state.emit(chasing_state)
+		change_state.emit(chasing_state, "Chasing")
+		
