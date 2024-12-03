@@ -1,7 +1,7 @@
 extends State
 class_name Enemy1_Chasing
 
-@export var chase_speed: float = 55.0
+@export var chase_speed: float = 70.0
 var target: CharacterBody2D
 var attacking_state : State
 var idle_state : State
@@ -19,7 +19,7 @@ func initialize():
 	idle_state = get_parent().get_node("Idle")
 
 func process_state(delta: float):
-	print("Chasing")
+	#print("Chasing")
 	body.velocity = (target.position - body.position).normalized() * chase_speed
 	body.move_and_slide()
 	var hit_targets = hitbox.get_overlapping_bodies()

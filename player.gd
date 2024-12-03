@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 100.0
+@export var hp: int = 3
 
 var can_jump : bool = true
 var can_sweep : bool = true
 var can_stab : bool = true
+var targets : Array
 
 func jump(event):
 	if can_jump == true:
@@ -44,6 +46,13 @@ func stab(event):
 		can_stab = true
 		can_sweep = true
 		can_jump = true
+		
+func hurt(damage_number : int):
+	hp -= damage_number
+	
+	if (hp <= 0):
+		self.visible = false
+		get_tree().paused = true
 
 func _physics_process(delta):
 	if self.velocity == Vector2(0,1) * move_speed or self.velocity == Vector2(0,-1) * move_speed:
@@ -62,3 +71,9 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("sweep")):
 		sweep("sweep")
 		#print("SWEEP")
+
+func _on_stab_hurtbox_body_entered(body: Node2D) -> void:
+	body.hit(1)
+	
+func _on_sweep_hurtbox_body_entered(body: Node2D) -> void:
+	body.hit(2)

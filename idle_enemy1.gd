@@ -10,7 +10,7 @@ func initialize():
 	chasing_state = get_parent().get_node("Chasing")
 	
 func process_state(delta: float):
-	print("Idle")
+	#print("Idle")
 	
 	potential_targets = detect_range.get_overlapping_bodies()
 	
