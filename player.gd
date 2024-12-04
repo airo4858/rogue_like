@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var max_hp : int = 3
 @export var hp: int = max_hp
+#Create a variable keeping track of which stage and have that correlate to the hurt function
 
 var can_jump : bool = true
 var can_sweep : bool = true
@@ -52,15 +53,15 @@ func stab(event):
 func hurt(damage_number : int):
 	hp -= damage_number
 	
-	get_tree().get_root().get_node("Main/UI").get_hurt(1)
+	get_tree().get_root().get_node("Stage1/UI").get_hurt(1)
 	if (hp <= 0):
 		self.visible = false
 		get_tree().paused = true
 
 func _physics_process(delta):
-	if self.velocity == Vector2(0,1) * move_speed or self.velocity == Vector2(0,-1) * move_speed:
-		move_speed * 2
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed * Vector2(2,1)
+	if velocity == Vector2(0,100) or velocity == Vector2(0,-100):
+		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed * Vector2(2,1.5)
 	move_and_slide()
 	
 	if (Input.is_action_pressed("jump")):

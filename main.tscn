@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://jarktaase6ed"]
+[gd_scene load_steps=18 format=3 uid="uid://jarktaase6ed"]
 
-[ext_resource type="Script" path="res://state.gd" id="1_rqf0h"]
+[ext_resource type="Script" path="res://stage1.gd" id="1_40akv"]
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_x5kxa"]
 [ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="2_h42dc"]
 [ext_resource type="Texture2D" uid="uid://7jrgiuyodbsk" path="res://Fence Block 2.png" id="3_y1xnl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qsjwlftjawi3" path="res://Isometric Tree 3x3 Block (1).png" id="6_qxpkr"]
 [ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="8_v5vhg"]
 [ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="9_1lfhv"]
+[ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="10_e7scb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sa6vg"]
 texture = ExtResource("2_h42dc")
@@ -59,8 +60,12 @@ size = Vector2(1018.35, 25.7577)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mkvc"]
 size = Vector2(1495.01, 296.891)
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_rqf0h")
+[node name="Stage1" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3")]
+script = ExtResource("1_40akv")
+enemy1 = NodePath("Enemy1")
+enemy2 = NodePath("Enemy2")
+enemy3 = NodePath("Enemy3")
+item = ExtResource("10_e7scb")
 
 [node name="YardMap1" parent="." instance=ExtResource("1_x5kxa")]
 tile_set = SubResource("TileSet_7s7e2")
@@ -68,6 +73,8 @@ tile_set = SubResource("TileSet_7s7e2")
 [node name="Player" parent="." instance=ExtResource("5_sxxdb")]
 y_sort_enabled = true
 position = Vector2(383, 185)
+collision_mask = 9
+hp = 3
 
 [node name="Enemy1" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(869, 192)
@@ -121,3 +128,6 @@ rotation = -0.449501
 shape = SubResource("RectangleShape2D_8mkvc")
 
 [node name="UI" parent="." instance=ExtResource("9_1lfhv")]
+
+[node name="ItemSpawnPoint" type="Node2D" parent="."]
+position = Vector2(381, 183)

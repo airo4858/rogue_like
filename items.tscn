@@ -1,14 +1,103 @@
-[gd_scene load_steps=4 format=3 uid="uid://biy3cquupk5n"]
+[gd_scene load_steps=11 format=3 uid="uid://biy3cquupk5n"]
 
 [ext_resource type="Script" path="res://items.gd" id="1_sw4nv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ek5d0"]
+size = Vector2(16, 14)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vn8iu"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4p7pd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgah"]
 size = Vector2(12, 10)
 
-[node name="Items" type="Node2D"]
+[sub_resource type="Animation" id="Animation_knm4a"]
+resource_name = "item_1_beta"
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaItemSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8uv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaItemSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7e4xj"]
+resource_name = "item_2_beta"
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaItemSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_axxpx"]
+resource_name = "item_3_beta"
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaItemSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pk7vn"]
+_data = {
+"RESET": SubResource("Animation_a8uv2"),
+"item_1_beta": SubResource("Animation_knm4a"),
+"item_2_beta": SubResource("Animation_7e4xj"),
+"item_3_beta": SubResource("Animation_axxpx")
+}
+
+[node name="Items" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_sw4nv")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ek5d0")
+
+[node name="BetaItemSpriteBackground" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 2.68221e-07)
+scale = Vector2(16, 14)
+texture = SubResource("CanvasTexture_vn8iu")
 
 [node name="BetaItemSprite" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.38419e-07)
@@ -16,6 +105,12 @@ scale = Vector2(12, 10)
 texture = SubResource("CanvasTexture_4p7pd")
 
 [node name="ItemHitbox" type="Area2D" parent="."]
+collision_layer = 8
 
 [node name="ItemHitboxShape" type="CollisionShape2D" parent="ItemHitbox"]
 shape = SubResource("RectangleShape2D_sdgah")
+
+[node name="AnimationItem" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pk7vn")
+}
