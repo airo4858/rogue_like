@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @export var move_speed: float = 100.0
-@export var hp: int = 3
+
+@export var max_hp : int = 3
+@export var hp: int = max_hp
 
 var can_jump : bool = true
 var can_sweep : bool = true
@@ -50,6 +52,7 @@ func stab(event):
 func hurt(damage_number : int):
 	hp -= damage_number
 	
+	get_tree().get_root().get_node("Main/UI").get_hurt(1)
 	if (hp <= 0):
 		self.visible = false
 		get_tree().paused = true

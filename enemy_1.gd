@@ -1,10 +1,14 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal healthChanged
+
+@export var max_hp: int = 10
 @export var hp: int = 10
 
 func hit(damage_number: int):
 	hp -= damage_number
+	healthChanged.emit()
 	if (hp <= 0):
 		queue_free()
 
