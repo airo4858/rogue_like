@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7f1653id1i3k"]
+[gd_scene load_steps=15 format=3 uid="uid://b7f1653id1i3k"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_vwqdy"]
+[ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="2_1kybp"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xbwex"]
 
@@ -283,11 +284,12 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krmph"]
-size = Vector2(20, 40)
+size = Vector2(22, 40)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 24
 script = ExtResource("1_vwqdy")
+item = ExtResource("2_1kybp")
 
 [node name="BetaSprite" type="Sprite2D" parent="."]
 scale = Vector2(20, 36)
@@ -337,10 +339,12 @@ libraries = {
 "": SubResource("AnimationLibrary_xqj8h")
 }
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="ItemPickupArea" type="Area2D" parent="."]
+collision_mask = 31
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="ItemPickup" type="CollisionShape2D" parent="ItemPickupArea"]
 shape = SubResource("RectangleShape2D_krmph")
 
 [connection signal="body_entered" from="Sweep/SweepHurtbox" to="." method="_on_sweep_hurtbox_body_entered"]
 [connection signal="body_entered" from="Stab/StabHurtbox" to="." method="_on_stab_hurtbox_body_entered"]
+[connection signal="body_entered" from="ItemPickupArea" to="." method="_on_collision_area_body_entered"]

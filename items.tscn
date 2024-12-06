@@ -10,7 +10,22 @@ size = Vector2(16, 14)
 [sub_resource type="CanvasTexture" id="CanvasTexture_4p7pd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgah"]
-size = Vector2(12, 10)
+size = Vector2(24, 20)
+
+[sub_resource type="Animation" id="Animation_a8uv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaItemSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_knm4a"]
 resource_name = "item_1_beta"
@@ -27,21 +42,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_a8uv2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BetaItemSprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7e4xj"]
@@ -86,7 +86,7 @@ _data = {
 "item_3_beta": SubResource("Animation_axxpx")
 }
 
-[node name="Items" type="CharacterBody2D"]
+[node name="Items" type="CharacterBody2D" groups=["Item"]]
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_sw4nv")

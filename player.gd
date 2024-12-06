@@ -4,7 +4,10 @@ extends CharacterBody2D
 
 @export var max_hp : int = 3
 @export var hp: int = max_hp
+@export var item : Resource
 #Create a variable keeping track of which stage and have that correlate to the hurt function
+var stab_damage: int = 1
+var sweep_damage: int = 2
 
 var can_jump : bool = true
 var can_sweep : bool = true
@@ -77,7 +80,13 @@ func _physics_process(delta):
 		#print("SWEEP")
 
 func _on_stab_hurtbox_body_entered(body: Node2D) -> void:
-	body.hit(1)
+	body.hit(stab_damage)
 	
 func _on_sweep_hurtbox_body_entered(body: Node2D) -> void:
-	body.hit(2)
+	body.hit(sweep_damage)
+
+#Item Pickup Code
+func _on_collision_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Item"):
+		print("PICKUP")
+		body.pickup(self)

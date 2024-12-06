@@ -15,5 +15,4 @@ func hit(damage_number: int):
 		enemyDeath.emit()
 
 func _on_attack_hurtbox_body_entered(body: Node2D) -> void:
-	print("HURT")
 	body.hurt(1)
