@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7f1653id1i3k"]
+[gd_scene load_steps=19 format=3 uid="uid://b7f1653id1i3k"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_vwqdy"]
 [ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="2_1kybp"]
@@ -12,10 +12,14 @@ size = Vector2(20, 35)
 radius = 22.0
 height = 78.0
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_jwfni"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_xy8vh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utbjh"]
 size = Vector2(156, 14)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_b78it"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4ij7r"]
 
@@ -141,6 +145,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sweep/SweepHurtbox/ExtraSweepSprite:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Stab/StabHurtbox/ExtraStabSprite:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_derx3"]
 resource_name = "beta_jump"
@@ -201,7 +229,7 @@ tracks/4/path = NodePath("BetaSprite:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.833333),
+"times": PackedFloat32Array(0, 0.166667, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 1, 1, 1), Color(1, 1, 1, 1)]
@@ -213,7 +241,7 @@ tracks/5/path = NodePath("Hitbox:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.166667, 0.833333),
+"times": PackedFloat32Array(0.166667, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -275,10 +303,92 @@ tracks/1/keys = {
 "values": [false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_5tx8v"]
+resource_name = "extra_sweep_attack"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sweep/SweepHurtbox/SweepHitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sweep/SweepHurtbox/SweepSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sweep/SweepHurtbox/ExtraSweepSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ukr0e"]
+resource_name = "extra_stab_attack"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stab/StabHurtbox/StabHitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stab/StabHurtbox/StabSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stab/StabHurtbox/ExtraStabSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xqj8h"]
 _data = {
 "RESET": SubResource("Animation_h6v7o"),
 "beta_jump": SubResource("Animation_derx3"),
+"extra_stab_attack": SubResource("Animation_ukr0e"),
+"extra_sweep_attack": SubResource("Animation_5tx8v"),
 "stab_attack": SubResource("Animation_nj04u"),
 "sweep_attack": SubResource("Animation_at734")
 }
@@ -309,6 +419,13 @@ position = Vector2(-57, 1)
 shape = SubResource("CapsuleShape2D_mpkpe")
 disabled = true
 
+[node name="ExtraSweepSprite" type="Sprite2D" parent="Sweep/SweepHurtbox"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-57, 1.5)
+scale = Vector2(38, 79)
+texture = SubResource("CanvasTexture_jwfni")
+
 [node name="SweepSprite" type="Sprite2D" parent="Sweep/SweepHurtbox"]
 visible = false
 position = Vector2(-57, 1.5)
@@ -324,6 +441,13 @@ collision_mask = 2
 position = Vector2(89, -1)
 shape = SubResource("RectangleShape2D_utbjh")
 disabled = true
+
+[node name="ExtraStabSprite" type="Sprite2D" parent="Stab/StabHurtbox"]
+visible = false
+modulate = Color(0.0117647, 0, 1, 1)
+position = Vector2(89.5, -1)
+scale = Vector2(159, 16)
+texture = SubResource("CanvasTexture_b78it")
 
 [node name="StabSprite" type="Sprite2D" parent="Stab/StabHurtbox"]
 visible = false

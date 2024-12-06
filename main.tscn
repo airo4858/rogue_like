@@ -74,7 +74,6 @@ tile_set = SubResource("TileSet_7s7e2")
 y_sort_enabled = true
 position = Vector2(383, 185)
 collision_mask = 9
-hp = 3
 
 [node name="Enemy1" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(869, 192)

@@ -2,12 +2,14 @@ extends CharacterBody2D
 
 @export var move_speed: float = 100.0
 
-@export var max_hp : int = 3
-@export var hp: int = max_hp
+@export var max_hp : int = 10
+@export var hp: int = 3
 @export var item : Resource
 #Create a variable keeping track of which stage and have that correlate to the hurt function
 var stab_damage: int = 1
 var sweep_damage: int = 2
+var extra_sweep : int = 1
+var extra_stab : int = 1
 
 var can_jump : bool = true
 var can_sweep : bool = true
@@ -22,8 +24,8 @@ func jump(event):
 		can_stab = false
 		$AnimationPlayer.play("beta_jump")
 		await $AnimationPlayer.animation_finished
-		var overlap = $CollisionArea.get_overlapping_bodies()
-		if overlap.size() > 1:
+		var overlap = $ItemPickupArea.get_overlapping_bodies()
+		if overlap.size() >= 1:
 			self.position = initial_player_position
 		can_jump = true
 		can_sweep = true
@@ -35,8 +37,12 @@ func sweep(event):
 		can_stab = false
 		can_jump = false
 		get_node("Sweep").look_at(get_global_mouse_position())
-		$AnimationPlayer.play("sweep_attack")
-		await $AnimationPlayer.animation_finished
+		if extra_sweep == 1:
+			$AnimationPlayer.play("sweep_attack")
+			await $AnimationPlayer.animation_finished
+		elif extra_sweep == 2:
+			$AnimationPlayer.play("extra_sweep_attack")
+			await $AnimationPlayer.animation_finished
 		can_sweep = true
 		can_stab = true
 		can_jump = true
@@ -47,8 +53,12 @@ func stab(event):
 		can_sweep = false
 		can_jump = false
 		get_node("Stab").look_at(get_global_mouse_position())
-		$AnimationPlayer.play("stab_attack")
-		await $AnimationPlayer.animation_finished
+		if extra_stab == 1:
+			$AnimationPlayer.play("stab_attack")
+			await $AnimationPlayer.animation_finished
+		elif extra_stab == 2:
+			$AnimationPlayer.play("extra_stab_attack")
+			await $AnimationPlayer.animation_finished
 		can_stab = true
 		can_sweep = true
 		can_jump = true
@@ -88,5 +98,5 @@ func _on_sweep_hurtbox_body_entered(body: Node2D) -> void:
 #Item Pickup Code
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Item"):
-		print("PICKUP")
 		body.pickup(self)
+		print("PICKUP")

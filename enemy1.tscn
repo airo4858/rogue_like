@@ -19,7 +19,7 @@ height = 46.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_xe6yl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e2wm"]
-radius = 246.0
+radius = 315.002
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6exxq"]
 size = Vector2(19, 20)
