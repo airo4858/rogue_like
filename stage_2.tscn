@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://u31lq2skjru1"]
+
+[ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_clcf0"]
+[ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="2_gnw1g"]
+[ext_resource type="Texture2D" uid="uid://7jrgiuyodbsk" path="res://Fence Block 2.png" id="3_4hyqq"]
+[ext_resource type="Texture2D" uid="uid://byp5ogq4dcaqi" path="res://Isometric Grass Block 1.png" id="4_egamg"]
+[ext_resource type="Texture2D" uid="uid://qsjwlftjawi3" path="res://Isometric Tree 3x3 Block (1).png" id="5_lcfrw"]
+[ext_resource type="Texture2D" uid="uid://0nqfdipmnydt" path="res://Isometric Tree 3x3 Block new.png" id="6_1fj3m"]
+[ext_resource type="PackedScene" uid="uid://b7f1653id1i3k" path="res://player.tscn" id="6_ueb1v"]
+[ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="7_n31mf"]
+[ext_resource type="Texture2D" uid="uid://ckmi28gvj30s2" path="res://Isometric Bush.png" id="7_tbkle"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8a48"]
+texture = ExtResource("2_gnw1g")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jhvyu"]
+texture = ExtResource("3_4hyqq")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_clxmo"]
+texture = ExtResource("4_egamg")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymvg3"]
+texture = ExtResource("5_lcfrw")
+margins = Vector2i(0, 7)
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axv1d"]
+texture = ExtResource("6_1fj3m")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3nun"]
+texture = ExtResource("7_tbkle")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_abu4p"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(64, 32)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_clxmo")
+sources/0 = SubResource("TileSetAtlasSource_x8a48")
+sources/1 = SubResource("TileSetAtlasSource_jhvyu")
+sources/4 = SubResource("TileSetAtlasSource_ymvg3")
+sources/6 = SubResource("TileSetAtlasSource_axv1d")
+sources/9 = SubResource("TileSetAtlasSource_n3nun")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beaou"]
+size = Vector2(1018.35, 25.7577)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ka0e"]
+size = Vector2(1495.01, 296.891)
+
+[node name="Stage2" type="Node2D"]
+
+[node name="YardMap1" parent="." instance=ExtResource("1_clcf0")]
+tile_set = SubResource("TileSet_abu4p")
+layer_1/tile_data = PackedInt32Array(-524280, 6, 0, -589815, 65542, 0, -524278, 65542, 1, -458743, 6, 1, -458741, 65542, 2, -393206, 6, 2, -393204, 65542, 3, -327669, 6, 3, 131075, 6, 0, 65540, 65542, 0, 196612, 6, 1, 131077, 65542, 1, 262149, 6, 2, 196614, 65542, 2, 327686, 6, 3, 262151, 65542, 3, 524300, 6, 0, 458765, 65542, 0, 524302, 65542, 1, 589837, 6, 1, 589839, 65542, 2, 655374, 6, 2, 655376, 65542, 3, 720911, 6, 3, 131089, 6, 0, 65554, 65542, 0, 196626, 6, 1, 131091, 65542, 1, 262163, 6, 2, 196628, 65542, 2, 327700, 6, 3, 262165, 65542, 3, -393199, 6, 0, -458734, 65542, 0, -327662, 6, 1, -393197, 65542, 1, -262125, 6, 2, -327660, 65542, 2, -196588, 6, 3, -262123, 65542, 3, -327677, 6, 0, -327676, 65542, 0, -262141, 6, 0, -262139, 65542, 1, -196604, 6, 1, -196602, 65542, 2, -131067, 6, 2, -65530, 6, 3, -131065, 65542, 3, 589829, 6, 0, 524294, 65542, 0, 655366, 6, 1, 589831, 65542, 1, 720903, 6, 2, 655368, 65542, 2, 786440, 6, 3, 720905, 65542, 3, -655361, 6, 0, -786432, 65542, 0, -720896, 65542, 0, -655359, 6, 0, -655360, 6, 0, 196618, 9, 0, 131083, 65545, 0, 196620, 65545, 1, 262155, 9, 1, 131086, 9, 0, 65551, 65545, 0, 196623, 9, 1, 131088, 65545, 1, -196596, 9, 0, -262131, 65545, 0, -131059, 9, 1, -196594, 65545, 1, -524284, 9, 0)
+
+[node name="Player" parent="." instance=ExtResource("6_ueb1v")]
+y_sort_enabled = true
+position = Vector2(383, 185)
+collision_mask = 9
+
+[node name="Map Collisions" type="CharacterBody2D" parent="."]
+
+[node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-36, 400)
+rotation = 0.461151
+shape = SubResource("RectangleShape2D_beaou")
+
+[node name="TopLeftFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-23, -28)
+rotation = 2.68225
+shape = SubResource("RectangleShape2D_beaou")
+
+[node name="BottomRightFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(811, 398)
+rotation = 2.67755
+shape = SubResource("RectangleShape2D_beaou")
+
+[node name="TopRightFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(819.663, -15.7727)
+rotation = 0.461151
+shape = SubResource("RectangleShape2D_beaou")
+
+[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+position = Vector2(861, -167)
+rotation = 0.459854
+shape = SubResource("RectangleShape2D_5ka0e")
+
+[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+position = Vector2(-68, -179)
+rotation = -0.449501
+shape = SubResource("RectangleShape2D_5ka0e")
+
+[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+position = Vector2(-110, 532)
+rotation = 0.459854
+shape = SubResource("RectangleShape2D_5ka0e")
+
+[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+position = Vector2(879, 537)
+rotation = -0.449501
+shape = SubResource("RectangleShape2D_5ka0e")
+
+[node name="UI" parent="." instance=ExtResource("7_n31mf")]
+
+[node name="ItemSpawnPoint" type="Node2D" parent="."]
+position = Vector2(381, 183)
