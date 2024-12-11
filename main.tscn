@@ -62,9 +62,9 @@ size = Vector2(1495.01, 296.891)
 
 [node name="Stage1" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3")]
 script = ExtResource("1_40akv")
-enemy1 = NodePath("Enemy1")
-enemy2 = NodePath("Enemy2")
-enemy3 = NodePath("Enemy3")
+enemy1 = NodePath("Enemy1_1")
+enemy2 = NodePath("Enemy1_2")
+enemy3 = NodePath("Enemy1_3")
 item = ExtResource("10_e7scb")
 
 [node name="YardMap1" parent="." instance=ExtResource("1_x5kxa")]
@@ -75,13 +75,13 @@ y_sort_enabled = true
 position = Vector2(383, 185)
 collision_mask = 9
 
-[node name="Enemy1" parent="." instance=ExtResource("8_v5vhg")]
+[node name="Enemy1_1" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(869, 192)
 
-[node name="Enemy2" parent="." instance=ExtResource("8_v5vhg")]
+[node name="Enemy1_2" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(390, -133)
 
-[node name="Enemy3" parent="." instance=ExtResource("8_v5vhg")]
+[node name="Enemy1_3" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(-129, 190)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]

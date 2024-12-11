@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://u31lq2skjru1"]
+[gd_scene load_steps=22 format=3 uid="uid://u31lq2skjru1"]
 
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_clcf0"]
 [ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="2_gnw1g"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7f1653id1i3k" path="res://player.tscn" id="6_ueb1v"]
 [ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="7_n31mf"]
 [ext_resource type="Texture2D" uid="uid://ckmi28gvj30s2" path="res://Isometric Bush.png" id="7_tbkle"]
+[ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="9_v1twr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8a48"]
 texture = ExtResource("2_gnw1g")
@@ -81,18 +82,28 @@ size = Vector2(1018.35, 25.7577)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ka0e"]
 size = Vector2(1495.01, 296.891)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnmxj"]
+size = Vector2(34, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrmg"]
+size = Vector2(83, 35.5)
+
 [node name="Stage2" type="Node2D"]
 
 [node name="YardMap1" parent="." instance=ExtResource("1_clcf0")]
 tile_set = SubResource("TileSet_abu4p")
-layer_1/tile_data = PackedInt32Array(-524280, 6, 0, -589815, 65542, 0, -524278, 65542, 1, -458743, 6, 1, -458741, 65542, 2, -393206, 6, 2, -393204, 65542, 3, -327669, 6, 3, 131075, 6, 0, 65540, 65542, 0, 196612, 6, 1, 131077, 65542, 1, 262149, 6, 2, 196614, 65542, 2, 327686, 6, 3, 262151, 65542, 3, 524300, 6, 0, 458765, 65542, 0, 524302, 65542, 1, 589837, 6, 1, 589839, 65542, 2, 655374, 6, 2, 655376, 65542, 3, 720911, 6, 3, 131089, 6, 0, 65554, 65542, 0, 196626, 6, 1, 131091, 65542, 1, 262163, 6, 2, 196628, 65542, 2, 327700, 6, 3, 262165, 65542, 3, -393199, 6, 0, -458734, 65542, 0, -327662, 6, 1, -393197, 65542, 1, -262125, 6, 2, -327660, 65542, 2, -196588, 6, 3, -262123, 65542, 3, -327677, 6, 0, -327676, 65542, 0, -262141, 6, 0, -262139, 65542, 1, -196604, 6, 1, -196602, 65542, 2, -131067, 6, 2, -65530, 6, 3, -131065, 65542, 3, 589829, 6, 0, 524294, 65542, 0, 655366, 6, 1, 589831, 65542, 1, 720903, 6, 2, 655368, 65542, 2, 786440, 6, 3, 720905, 65542, 3, -655361, 6, 0, -786432, 65542, 0, -720896, 65542, 0, -655359, 6, 0, -655360, 6, 0, 196618, 9, 0, 131083, 65545, 0, 196620, 65545, 1, 262155, 9, 1, 131086, 9, 0, 65551, 65545, 0, 196623, 9, 1, 131088, 65545, 1, -196596, 9, 0, -262131, 65545, 0, -131059, 9, 1, -196594, 65545, 1, -524284, 9, 0)
+layer_1/tile_data = PackedInt32Array(-524280, 6, 0, -589815, 65542, 0, -524278, 65542, 1, -458743, 6, 1, -458741, 65542, 2, -393206, 6, 2, -393204, 65542, 3, -327669, 6, 3, 131075, 6, 0, 65540, 65542, 0, 196612, 6, 1, 131077, 65542, 1, 262149, 6, 2, 196614, 65542, 2, 327686, 6, 3, 262151, 65542, 3, 524300, 6, 0, 458765, 65542, 0, 524302, 65542, 1, 589837, 6, 1, 589839, 65542, 2, 655374, 6, 2, 655376, 65542, 3, 720911, 6, 3, 131089, 6, 0, 65554, 65542, 0, 196626, 6, 1, 131091, 65542, 1, 262163, 6, 2, 196628, 65542, 2, 327700, 6, 3, 262165, 65542, 3, -393199, 6, 0, -458734, 65542, 0, -327662, 6, 1, -393197, 65542, 1, -262125, 6, 2, -327660, 65542, 2, -196588, 6, 3, -262123, 65542, 3, -327677, 6, 0, -327676, 65542, 0, -262141, 6, 0, -262139, 65542, 1, -196604, 6, 1, -196602, 65542, 2, -131067, 6, 2, -65530, 6, 3, -131065, 65542, 3, 589829, 6, 0, 524294, 65542, 0, 655366, 6, 1, 589831, 65542, 1, 720903, 6, 2, 655368, 65542, 2, 786440, 6, 3, 720905, 65542, 3, -655361, 6, 0, -786432, 65542, 0, -720896, 65542, 0, -655359, 6, 0, -655360, 6, 0, 196618, 9, 0, 131083, 65545, 0, 196620, 65545, 1, 262155, 9, 1, 131086, 9, 0, 65551, 65545, 0, 196623, 9, 1, 131088, 65545, 1, -196596, 9, 0, -262131, 65545, 0, -131059, 9, 1, -196594, 65545, 1, -524284, 9, 0, 458753, 9, 0, 393218, 65545, 0, 458755, 65545, 1, 524290, 9, 1, -589811, 9, 0, -655346, 65545, 0, -524274, 9, 1, -589809, 65545, 1)
 
 [node name="Player" parent="." instance=ExtResource("6_ueb1v")]
 y_sort_enabled = true
 position = Vector2(383, 185)
 collision_mask = 9
 
+[node name="Enemy1_1" parent="." instance=ExtResource("9_v1twr")]
+position = Vector2(274, -63)
+
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
+collision_mask = 3
 
 [node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
 position = Vector2(-36, 400)
@@ -133,6 +144,54 @@ shape = SubResource("RectangleShape2D_5ka0e")
 position = Vector2(879, 537)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_5ka0e")
+
+[node name="Tree1" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(95, 176.25)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree2" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(287, 80)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree3" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-64, 320)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree4" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(191, 416)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree5" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(544, 402)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree6" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(575, 96)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Tree7" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(800, 271)
+shape = SubResource("RectangleShape2D_wnmxj")
+
+[node name="Bush1" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-125.5, 159.75)
+shape = SubResource("RectangleShape2D_xlrmg")
+
+[node name="Bush2" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(291, 238)
+shape = SubResource("RectangleShape2D_xlrmg")
+
+[node name="Bush3" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(450, 287)
+shape = SubResource("RectangleShape2D_xlrmg")
+
+[node name="Bush4" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(546, 177)
+shape = SubResource("RectangleShape2D_xlrmg")
+
+[node name="Bush5" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(770, 96)
+shape = SubResource("RectangleShape2D_xlrmg")
 
 [node name="UI" parent="." instance=ExtResource("7_n31mf")]
 
