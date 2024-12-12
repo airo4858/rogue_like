@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://u31lq2skjru1"]
+[gd_scene load_steps=23 format=3 uid="uid://u31lq2skjru1"]
 
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_clcf0"]
 [ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="2_gnw1g"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="7_n31mf"]
 [ext_resource type="Texture2D" uid="uid://ckmi28gvj30s2" path="res://Isometric Bush.png" id="7_tbkle"]
 [ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="9_v1twr"]
+[ext_resource type="PackedScene" uid="uid://cipl7bd0cf27y" path="res://enemy_2.tscn" id="10_hal7k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x8a48"]
 texture = ExtResource("2_gnw1g")
@@ -101,6 +102,9 @@ collision_mask = 9
 
 [node name="Enemy1_1" parent="." instance=ExtResource("9_v1twr")]
 position = Vector2(274, -63)
+
+[node name="enemy2_1" parent="." instance=ExtResource("10_hal7k")]
+position = Vector2(933, 189)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
 collision_mask = 3
