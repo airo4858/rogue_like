@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var health : int = 3
+var health : int = StageManager.hp 
 
 func get_hurt(num : int):
 	health -= num

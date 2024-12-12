@@ -11,7 +11,7 @@ offset_left = 19.0
 offset_top = 15.0
 offset_right = 215.0
 offset_bottom = 51.0
-theme_override_colors/font_color = Color(1, 0.298039, 0, 1)
+theme_override_colors/font_color = Color(0.196078, 0.913725, 0.513726, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_1b254")
@@ -30,3 +30,16 @@ theme_override_fonts/font = ExtResource("2_1b254")
 theme_override_font_sizes/font_size = 24
 text = "Items:
 Green: Gain Health                                Red: Extra Sweep Damage                     Blue: Extra Stab Damage"
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+offset_left = 452.0
+offset_top = 296.0
+offset_right = 717.0
+offset_bottom = 368.0
+theme_override_colors/font_color = Color(0.733333, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_1b254")
+theme_override_font_sizes/font_size = 70
+text = "GAME OVER"

@@ -1,38 +1,31 @@
 extends Node2D
 
-@export var player : CharacterBody2D
 @export var enemy1 : CharacterBody2D
 @export var enemy2 : CharacterBody2D
-@export var enemy3 : CharacterBody2D
+#@export var enemy3 : CharacterBody2D
 @export var item : Resource 
-@export var enemy_count : int = 3
+@export var enemy_count : int
 
 var spawn_item : bool = true
 var newest_item : CharacterBody2D
-var next_scene = preload("res://stage_2.tscn").instantiate()
 
 func _ready():
 	enemy1.enemyDeath.connect(death_counter)
 	enemy2.enemyDeath.connect(death_counter)
-	enemy3.enemyDeath.connect(death_counter)
+	#enemy3.enemyDeath.connect(death_counter)
 
 func death_counter():
 	enemy_count -= 1
 
 func end_stage():
 	print("END STAGE")
-	StageManager.can_switch_stage = true
-	player.switch_stage.connect(switch_stage)
-	#$AnimationStage.play("end_stage")
+	$AnimationStage.play("end_stage")
 	
 func switch_stage():
-	StageManager.current_stage = "Stage2"
-	#Shader fade out
-	queue_free()
-	get_tree().get_root().add_child(next_scene)
-	StageManager.can_switch_stage = false
+	StageManager.current_stage = "Stage3"
 
 func _physics_process(delta: float):
+	StageManager.current_stage = "Stage2"
 	if(enemy_count <= 0):
 		if spawn_item == true:
 			var new_item = item.instantiate()

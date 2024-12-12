@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://jarktaase6ed"]
+[gd_scene load_steps=21 format=3 uid="uid://jarktaase6ed"]
 
 [ext_resource type="Script" path="res://stage1.gd" id="1_40akv"]
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_x5kxa"]
@@ -60,8 +60,118 @@ size = Vector2(1018.35, 25.7577)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mkvc"]
 size = Vector2(1495.01, 296.891)
 
-[node name="Stage1" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3")]
+[sub_resource type="Animation" id="Animation_h008x"]
+resource_name = "end_stage"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map Collisions/TopRightOOB:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Map Collisions/TopLeftOOB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Map Collisions/BottomLeftOOB:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Map Collisions/BottomRightOOB:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2j2mt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map Collisions/TopRightOOB:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Map Collisions/TopLeftOOB:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Map Collisions/BottomLeftOOB:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Map Collisions/BottomRightOOB:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ts2c5"]
+_data = {
+"RESET": SubResource("Animation_2j2mt"),
+"end_stage": SubResource("Animation_h008x")
+}
+
+[node name="Stage1" type="Node2D" node_paths=PackedStringArray("player", "enemy1", "enemy2", "enemy3")]
 script = ExtResource("1_40akv")
+player = NodePath("Player")
 enemy1 = NodePath("Enemy1_1")
 enemy2 = NodePath("Enemy1_2")
 enemy3 = NodePath("Enemy1_3")
@@ -76,13 +186,13 @@ position = Vector2(383, 185)
 collision_mask = 9
 
 [node name="Enemy1_1" parent="." instance=ExtResource("8_v5vhg")]
-position = Vector2(869, 192)
+position = Vector2(803, 194)
 
 [node name="Enemy1_2" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(390, -133)
 
 [node name="Enemy1_3" parent="." instance=ExtResource("8_v5vhg")]
-position = Vector2(-129, 190)
+position = Vector2(-31, 197)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
 
@@ -106,22 +216,24 @@ position = Vector2(819.663, -15.7727)
 rotation = 0.461151
 shape = SubResource("RectangleShape2D_bs7pv")
 
-[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="OOB" type="CharacterBody2D" parent="." groups=["OutOfBounds"]]
+
+[node name="TopRightOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(861, -167)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="TopLeftOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(-68, -179)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="BottomLeftOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(-110, 532)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="BottomRightOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(879, 537)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_8mkvc")
@@ -130,3 +242,8 @@ shape = SubResource("RectangleShape2D_8mkvc")
 
 [node name="ItemSpawnPoint" type="Node2D" parent="."]
 position = Vector2(381, 183)
+
+[node name="AnimationStage" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ts2c5")
+}

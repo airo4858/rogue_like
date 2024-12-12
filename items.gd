@@ -4,6 +4,8 @@ var item_number : int
 var has_pickup : bool = false
 #@export var player_character : Resource
 
+signal on_pick_up
+
 func pick_item():
 	item_number = randf()*3 + 1
 	if (item_number == 1):
@@ -13,15 +15,16 @@ func pick_item():
 	elif (item_number == 3):
 		$AnimationItem.play("item_3_beta")
 
-func pickup(player_character: CharacterBody2D):
+func pickup():
 	if (item_number == 1):
-		player_character.sweep_damage += 1
-		player_character.extra_sweep += 1
+		StageManager.sweep_damage += 1
+		StageManager.extra_sweep += 1
 	elif (item_number == 2):
-		player_character.stab_damage += 1
-		player_character.extra_stab += 1
+		StageManager.stab_damage += 1
+		StageManager.extra_stab += 1
 	elif (item_number == 3):
-		player_character.hp += 2
+		StageManager.hp += 2
 		get_tree().get_root().get_node("Stage1/UI").gain_health(2)
 	has_pickup = true
+	on_pick_up.emit()
 	queue_free()
