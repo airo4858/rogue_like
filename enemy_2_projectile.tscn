@@ -21,3 +21,5 @@ texture = SubResource("CanvasTexture_7ykqf")
 shape = SubResource("CircleShape2D_iq1c4")
 
 [node name="TimeToLive" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

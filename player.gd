@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 100.0
-
 @export var max_hp : int = 10
 @export var item : Resource
 
@@ -9,6 +7,7 @@ var can_jump : bool = true
 var can_sweep : bool = true
 var can_stab : bool = true
 var targets : Array
+var knockback : Vector2 = Vector2(-1,-1)
 
 signal switch_stage
 
@@ -40,7 +39,7 @@ func sweep(event):
 		if StageManager.extra_sweep == 1:
 			$AnimationPlayer.play("sweep_attack")
 			await $AnimationPlayer.animation_finished
-		elif StageManager.extra_sweep == 2:
+		elif StageManager.extra_sweep >= 2:
 			$AnimationPlayer.play("extra_sweep_attack")
 			await $AnimationPlayer.animation_finished
 		can_sweep = true
@@ -56,7 +55,7 @@ func stab(event):
 		if StageManager.extra_stab == 1:
 			$AnimationPlayer.play("stab_attack")
 			await $AnimationPlayer.animation_finished
-		elif StageManager.extra_stab == 2:
+		elif StageManager.extra_stab >= 2:
 			$AnimationPlayer.play("extra_stab_attack")
 			await $AnimationPlayer.animation_finished
 		can_stab = true
@@ -73,9 +72,9 @@ func hurt(damage_number : int):
 		get_tree().paused = true
 
 func _physics_process(delta):
-	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed * Vector2(2,1)
+	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * StageManager.move_speed * Vector2(2,1)
 	if velocity == Vector2(0,100) or velocity == Vector2(0,-100):
-		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed * Vector2(2,1.5)
+		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * StageManager.move_speed * Vector2(2,1.5)
 	move_and_slide()
 	
 	if (Input.is_action_pressed("jump")):
@@ -95,6 +94,12 @@ func _on_stab_hurtbox_body_entered(body: Node2D) -> void:
 	
 func _on_sweep_hurtbox_body_entered(body: Node2D) -> void:
 	body.hit(StageManager.sweep_damage)
+	StageManager.just_hit = true
+	body.velocity = (self.position - body.position).normalized() * 300 * knockback
+	body.move_and_slide()
+	knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	await lerp(knockback, Vector2.ZERO, 0.1)
+	StageManager.just_hit = false
 
 #Item Pickup Code
 func _on_collision_area_body_entered(body: Node2D) -> void:

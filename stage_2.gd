@@ -2,7 +2,9 @@ extends Node2D
 
 @export var enemy1 : CharacterBody2D
 @export var enemy2 : CharacterBody2D
-#@export var enemy3 : CharacterBody2D
+@export var enemy3 : CharacterBody2D
+@export var enemy4 : CharacterBody2D
+@export var enemy5 : CharacterBody2D
 @export var item : Resource 
 @export var enemy_count : int
 
@@ -12,14 +14,15 @@ var newest_item : CharacterBody2D
 func _ready():
 	enemy1.enemyDeath.connect(death_counter)
 	enemy2.enemyDeath.connect(death_counter)
-	#enemy3.enemyDeath.connect(death_counter)
+	enemy3.enemyDeath.connect(death_counter)
+	enemy4.enemyDeath.connect(death_counter)
+	enemy5.enemyDeath.connect(death_counter)
 
 func death_counter():
 	enemy_count -= 1
 
 func end_stage():
 	print("END STAGE")
-	$AnimationStage.play("end_stage")
 	
 func switch_stage():
 	StageManager.current_stage = "Stage3"

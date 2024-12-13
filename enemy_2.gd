@@ -15,6 +15,3 @@ func hit(damage_number: int):
 	if (hp <= 0):
 		queue_free()
 		enemyDeath.emit()
-
-func _on_attack_hurtbox_body_entered(body: Node2D) -> void:
-	body.hurt(1)

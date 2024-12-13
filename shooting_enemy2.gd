@@ -20,8 +20,11 @@ func process_state(delta: float):
 	is_chasing = false
 	aim_and_shoot(delta)
 	
-	body.velocity = (target.position - body.position).normalized() * 50 * Vector2(-1,1)
-	body.move_and_slide()
+	if StageManager.just_hit == false:
+		body.velocity = (target.position - body.position).normalized() * 50 * Vector2(-1,1)
+		body.move_and_slide()
+	elif StageManager.just_hit == true:
+		body.move_and_slide()
 	
 	var direction = (target.position - body.position).normalized()
 	var angle = rad_to_deg(body.velocity.angle()) + 180

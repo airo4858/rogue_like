@@ -7,13 +7,15 @@ var has_pickup : bool = false
 signal on_pick_up
 
 func pick_item():
-	item_number = randf()*3 + 1
+	item_number = randf()*4 + 1
 	if (item_number == 1):
 		$AnimationItem.play("item_1_beta")
 	elif (item_number == 2):
 		$AnimationItem.play("item_2_beta")
 	elif (item_number == 3):
 		$AnimationItem.play("item_3_beta")
+	elif (item_number == 4):
+		$AnimationItem.play("item_4_beta")
 
 func pickup():
 	if (item_number == 1):
@@ -25,6 +27,8 @@ func pickup():
 	elif (item_number == 3):
 		StageManager.hp += 2
 		get_tree().get_root().get_node("Stage1/UI").gain_health(2)
+	elif (item_number == 4):
+		StageManager.move_speed += 20
 	has_pickup = true
 	on_pick_up.emit()
 	queue_free()

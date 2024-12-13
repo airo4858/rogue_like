@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://u31lq2skjru1"]
+[gd_scene load_steps=25 format=3 uid="uid://u31lq2skjru1"]
 
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_clcf0"]
 [ext_resource type="Script" path="res://stage_2.gd" id="1_kxrwe"]
@@ -91,121 +91,15 @@ size = Vector2(34, 32.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrmg"]
 size = Vector2(83, 35.5)
 
-[sub_resource type="Animation" id="Animation_h008x"]
-resource_name = "end_stage"
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Map Collisions/TopRightOOB:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Map Collisions/TopLeftOOB:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Map Collisions/BottomLeftOOB:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Map Collisions/BottomRightOOB:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_2j2mt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Map Collisions/TopRightOOB:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Map Collisions/TopLeftOOB:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Map Collisions/BottomLeftOOB:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Map Collisions/BottomRightOOB:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ts2c5"]
-_data = {
-"RESET": SubResource("Animation_2j2mt"),
-"end_stage": SubResource("Animation_h008x")
-}
-
-[node name="Stage2" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2")]
+[node name="Stage2" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3", "enemy4", "enemy5")]
 script = ExtResource("1_kxrwe")
 enemy1 = NodePath("Enemy1_1")
 enemy2 = NodePath("enemy2_1")
+enemy3 = NodePath("enemy2_2")
+enemy4 = NodePath("enemy2_3")
+enemy5 = NodePath("Enemy1_2")
 item = ExtResource("2_7jwgb")
-enemy_count = 2
+enemy_count = 5
 
 [node name="YardMap1" parent="." instance=ExtResource("1_clcf0")]
 tile_set = SubResource("TileSet_abu4p")
@@ -219,8 +113,17 @@ collision_mask = 9
 [node name="Enemy1_1" parent="." instance=ExtResource("9_v1twr")]
 position = Vector2(274, -63)
 
+[node name="Enemy1_2" parent="." instance=ExtResource("9_v1twr")]
+position = Vector2(101, 422)
+
 [node name="enemy2_1" parent="." instance=ExtResource("10_hal7k")]
 position = Vector2(933, 189)
+
+[node name="enemy2_2" parent="." instance=ExtResource("10_hal7k")]
+position = Vector2(484, 467)
+
+[node name="enemy2_3" parent="." instance=ExtResource("10_hal7k")]
+position = Vector2(40, 239)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
 collision_mask = 3
@@ -317,8 +220,3 @@ shape = SubResource("RectangleShape2D_xlrmg")
 
 [node name="ItemSpawnPoint" type="Node2D" parent="."]
 position = Vector2(381, 183)
-
-[node name="AnimationStage" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ts2c5")
-}

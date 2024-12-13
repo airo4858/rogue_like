@@ -10,6 +10,7 @@ extends Node2D
 var spawn_item : bool = true
 var newest_item : CharacterBody2D
 var next_scene = preload("res://stage_2.tscn").instantiate()
+@onready var ui_animation : AnimationPlayer = get_node("UI/AnimationUI")
 
 func _ready():
 	enemy1.enemyDeath.connect(death_counter)
@@ -21,15 +22,18 @@ func death_counter():
 
 func end_stage():
 	print("END STAGE")
+	get_tree().get_root().get_node( StageManager.current_stage +  "/UI/EndStageHint").visible = true
 	StageManager.can_switch_stage = true
 	player.switch_stage.connect(switch_stage)
-	#$AnimationStage.play("end_stage")
 	
 func switch_stage():
-	StageManager.current_stage = "Stage2"
-	#Shader fade out
+	ui_animation.play("ScreenTransitionStart")
+	await ui_animation.animation_finished
 	queue_free()
 	get_tree().get_root().add_child(next_scene)
+	ui_animation.play("ScreenTransitionEnd")
+	await ui_animation.animation_finished
+	StageManager.current_stage = "Stage2"
 	StageManager.can_switch_stage = false
 
 func _physics_process(delta: float):
