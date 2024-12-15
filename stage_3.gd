@@ -10,6 +10,7 @@ extends Node2D
 
 var spawn_item : bool = true
 var newest_item : CharacterBody2D
+@onready var ui_animation : AnimationPlayer = get_node("UI/AnimationUI")
 
 func _ready():
 	enemy1.enemyDeath.connect(death_counter)
@@ -23,6 +24,9 @@ func death_counter():
 
 func end_stage():
 	print("END STAGE")
+	ui_animation.play("EndGame")
+	await ui_animation.animation_finished
+	get_tree().paused = true
 	
 func switch_stage():
 	StageManager.current_stage = "Stage4"

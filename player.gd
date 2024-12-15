@@ -101,7 +101,7 @@ func _on_stab_hurtbox_body_entered(body: Node2D) -> void:
 func _on_sweep_hurtbox_body_entered(body: Node2D) -> void:
 	body.hit(StageManager.sweep_damage)
 	StageManager.just_hit = true
-	body.velocity = (self.position - body.position).normalized() * 300 * knockback
+	body.velocity = (self.position - body.position).normalized() * 250 * knockback
 	body.move_and_slide()
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	await lerp(knockback, Vector2.ZERO, 0.1)

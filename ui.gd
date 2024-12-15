@@ -10,7 +10,7 @@ func get_hurt(num : int):
 func gain_health(num : int):
 	health += num
 	$Health.text = "Health: " + str(health)
-
+	
 func _physics_process(delta: float):
 	if setup == true:
 		$Health.text = "Health: " + str(StageManager.hp)

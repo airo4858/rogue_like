@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjktnyqj04sp4"]
+[gd_scene load_steps=19 format=3 uid="uid://bjktnyqj04sp4"]
 
 [ext_resource type="Script" path="res://enemy_1.gd" id="1_7l60d"]
 [ext_resource type="Script" path="res://idle_enemy1.gd" id="1_hgt82"]
@@ -26,6 +26,9 @@ size = Vector2(19, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xutn"]
 radius = 44.0114
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3tq6l"]
+radius = 87.0057
 
 [sub_resource type="Animation" id="Animation_5p5pw"]
 length = 0.001
@@ -215,6 +218,13 @@ collision_mask = 16
 
 [node name="AttackShape" type="CollisionShape2D" parent="Attack"]
 shape = SubResource("CircleShape2D_3xutn")
+
+[node name="Knockback" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="KnockbackRange" type="CollisionShape2D" parent="Knockback"]
+shape = SubResource("CircleShape2D_3tq6l")
 
 [node name="AnimationEnemy" type="AnimationPlayer" parent="."]
 libraries = {

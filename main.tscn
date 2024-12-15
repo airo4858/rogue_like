@@ -86,7 +86,7 @@ position = Vector2(390, -133)
 position = Vector2(-31, 197)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
-collision_layer = 255
+collision_layer = 229
 
 [node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
 position = Vector2(-36, 400)

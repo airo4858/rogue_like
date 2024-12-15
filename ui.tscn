@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmt7lwup88f6r"]
+[gd_scene load_steps=8 format=3 uid="uid://dmt7lwup88f6r"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_6xdte"]
 [ext_resource type="FontFile" uid="uid://cnoxr2hkjq6e4" path="res://pixel-game/Pixel Game.otf" id="2_1b254"]
@@ -16,6 +16,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EndGame:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_bnoy7"]
@@ -52,8 +64,26 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_8hbo5"]
+resource_name = "EndGame"
+length = 0.166675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndGame:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6ct3"]
 _data = {
+"EndGame": SubResource("Animation_8hbo5"),
 "RESET": SubResource("Animation_ndhvo"),
 "ScreenTransitionEnd": SubResource("Animation_bnoy7"),
 "ScreenTransitionStart": SubResource("Animation_r2rb0")
@@ -124,6 +154,19 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_1b254")
 theme_override_font_sizes/font_size = 50
 text = "^ (Jump over the fence) ^"
+
+[node name="EndGame" type="Label" parent="."]
+visible = false
+offset_left = 320.0
+offset_top = 288.0
+offset_right = 815.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_1b254")
+theme_override_font_sizes/font_size = 60
+text = "You finished the demo!"
 
 [node name="AnimationUI" type="AnimationPlayer" parent="."]
 libraries = {
