@@ -11,11 +11,17 @@ var spawn_item : bool = true
 var newest_item : CharacterBody2D
 var next_scene = preload("res://stage_2.tscn").instantiate()
 @onready var ui_animation : AnimationPlayer = get_node("UI/AnimationUI")
+@onready var start_screen : Sprite2D = get_node("UI/StartScreen")
 
 func _ready():
+	Engine.time_scale = 0.0
 	enemy1.enemyDeath.connect(death_counter)
 	enemy2.enemyDeath.connect(death_counter)
 	enemy3.enemyDeath.connect(death_counter)
+
+func start(event):
+	start_screen.visible = false
+	Engine.time_scale = 1.0
 
 func death_counter():
 	enemy_count -= 1
@@ -37,6 +43,9 @@ func switch_stage():
 	StageManager.can_switch_stage = false
 
 func _physics_process(delta: float):
+	if (Input.is_action_pressed("StartButton")):
+		start("StartButton")
+	
 	if(enemy_count <= 0):
 		if spawn_item == true:
 			var new_item = item.instantiate()

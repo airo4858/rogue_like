@@ -1,7 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmt7lwup88f6r"]
+[gd_scene load_steps=9 format=3 uid="uid://dmt7lwup88f6r"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_6xdte"]
 [ext_resource type="FontFile" uid="uid://cnoxr2hkjq6e4" path="res://pixel-game/Pixel Game.otf" id="2_1b254"]
+[ext_resource type="Texture2D" uid="uid://ceonwmdpm41uc" path="res://neighbrorjpofj.png" id="3_untvp"]
+
+[sub_resource type="Animation" id="Animation_8hbo5"]
+resource_name = "EndGame"
+length = 0.166675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndGame:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_ndhvo"]
 length = 0.001
@@ -62,23 +80,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_8hbo5"]
-resource_name = "EndGame"
-length = 0.166675
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EndGame:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6ct3"]
@@ -155,19 +156,6 @@ theme_override_fonts/font = ExtResource("2_1b254")
 theme_override_font_sizes/font_size = 50
 text = "^ (Jump over the fence) ^"
 
-[node name="EndGame" type="Label" parent="."]
-visible = false
-offset_left = 320.0
-offset_top = 288.0
-offset_right = 815.0
-offset_bottom = 350.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_1b254")
-theme_override_font_sizes/font_size = 60
-text = "You finished the demo!"
-
 [node name="AnimationUI" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_s6ct3")
@@ -181,3 +169,48 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="StartScreen" type="Sprite2D" parent="."]
+position = Vector2(575.5, 324.5)
+scale = Vector2(3.98958, 3.38021)
+texture = ExtResource("3_untvp")
+
+[node name="StartTag" type="Label" parent="StartScreen"]
+offset_left = -136.982
+offset_top = 69.9661
+offset_right = 42.0183
+offset_bottom = 100.966
+theme_override_colors/font_color = Color(0, 0.984314, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_1b254")
+theme_override_font_sizes/font_size = 28
+text = "Press E to begin"
+
+[node name="Instructions" type="Label" parent="StartScreen"]
+offset_left = 40.4804
+offset_top = 26.4777
+offset_right = 155.48
+offset_bottom = 103.478
+theme_override_colors/font_color = Color(0.858824, 0.643137, 0.196078, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_1b254")
+theme_override_font_sizes/font_size = 14
+text = "WASD: Move
+SPACE: Jump
+Left-Click: Stab
+Right-Click: Sweep"
+
+[node name="EndGame" type="Label" parent="."]
+visible = false
+offset_left = 320.0
+offset_top = 288.0
+offset_right = 815.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_1b254")
+theme_override_font_sizes/font_size = 60
+text = "You finished the demo!"

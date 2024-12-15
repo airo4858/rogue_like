@@ -16,3 +16,5 @@ func _physics_process(delta: float):
 		$Health.text = "Health: " + str(StageManager.hp)
 		$StageTracker.text = str(StageManager.current_stage)
 		setup = false
+	if StageManager.current_stage == "Stage2" or StageManager.current_stage == "Stage3":
+		$StartScreen.visible = false
