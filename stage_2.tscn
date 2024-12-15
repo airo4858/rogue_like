@@ -91,8 +91,9 @@ size = Vector2(34, 32.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrmg"]
 size = Vector2(83, 35.5)
 
-[node name="Stage2" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3", "enemy4", "enemy5")]
+[node name="Stage2" type="Node2D" node_paths=PackedStringArray("player", "enemy1", "enemy2", "enemy3", "enemy4", "enemy5")]
 script = ExtResource("1_kxrwe")
+player = NodePath("Player")
 enemy1 = NodePath("Enemy1_1")
 enemy2 = NodePath("enemy2_1")
 enemy3 = NodePath("enemy2_2")
@@ -126,7 +127,7 @@ position = Vector2(484, 467)
 position = Vector2(40, 239)
 
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
-collision_mask = 3
+collision_layer = 255
 
 [node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
 position = Vector2(-36, 400)
@@ -148,22 +149,24 @@ position = Vector2(819.663, -15.7727)
 rotation = 0.461151
 shape = SubResource("RectangleShape2D_beaou")
 
-[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="OOB" type="CharacterBody2D" parent="Map Collisions" groups=["OutOfBounds"]]
+
+[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
 position = Vector2(861, -167)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_5ka0e")
 
-[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
 position = Vector2(-68, -179)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_5ka0e")
 
-[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
 position = Vector2(-110, 532)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_5ka0e")
 
-[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
 position = Vector2(879, 537)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_5ka0e")

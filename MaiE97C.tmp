@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://jarktaase6ed"]
+[gd_scene load_steps=19 format=3 uid="uid://jarktaase6ed"]
 
 [ext_resource type="Script" path="res://stage1.gd" id="1_40akv"]
 [ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="1_x5kxa"]
@@ -10,23 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="8_v5vhg"]
 [ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="9_1lfhv"]
 [ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="10_e7scb"]
+[ext_resource type="PackedScene" uid="uid://mu4pg3pacwpv" path="res://enemy_3.tscn" id="10_oeoaj"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3gog"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_814ir"]
 texture = ExtResource("2_h42dc")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0eelt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0vmr"]
 texture = ExtResource("3_y1xnl")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxtwv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2xtp"]
 texture = ExtResource("4_38iw3")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j35hn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5xl20"]
 texture = ExtResource("6_qxpkr")
 margins = Vector2i(0, 7)
 texture_region_size = Vector2i(64, 32)
@@ -49,10 +50,10 @@ tile_layout = 5
 tile_offset_axis = 1
 tile_size = Vector2i(64, 32)
 physics_layer_0/collision_layer = 1
-sources/2 = SubResource("TileSetAtlasSource_lxtwv")
-sources/0 = SubResource("TileSetAtlasSource_r3gog")
-sources/1 = SubResource("TileSetAtlasSource_0eelt")
-sources/4 = SubResource("TileSetAtlasSource_j35hn")
+sources/2 = SubResource("TileSetAtlasSource_a2xtp")
+sources/0 = SubResource("TileSetAtlasSource_814ir")
+sources/1 = SubResource("TileSetAtlasSource_d0vmr")
+sources/4 = SubResource("TileSetAtlasSource_5xl20")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7pv"]
 size = Vector2(1018.35, 25.7577)
@@ -85,8 +86,10 @@ position = Vector2(390, -133)
 [node name="Enemy1_3" parent="." instance=ExtResource("8_v5vhg")]
 position = Vector2(-31, 197)
 
+[node name="Enemy3" parent="." instance=ExtResource("10_oeoaj")]
+position = Vector2(381, 497)
+
 [node name="Map Collisions" type="CharacterBody2D" parent="."]
-collision_layer = 255
 
 [node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
 position = Vector2(-36, 400)
@@ -108,24 +111,24 @@ position = Vector2(819.663, -15.7727)
 rotation = 0.461151
 shape = SubResource("RectangleShape2D_bs7pv")
 
-[node name="OOB" type="CharacterBody2D" parent="Map Collisions" groups=["OutOfBounds"]]
+[node name="OOB" type="CharacterBody2D" parent="." groups=["OutOfBounds"]]
 
-[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+[node name="TopRightOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(861, -167)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+[node name="TopLeftOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(-68, -179)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+[node name="BottomLeftOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(-110, 532)
 rotation = 0.459854
 shape = SubResource("RectangleShape2D_8mkvc")
 
-[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+[node name="BottomRightOOB" type="CollisionShape2D" parent="OOB" groups=["OutOfBounds"]]
 position = Vector2(879, 537)
 rotation = -0.449501
 shape = SubResource("RectangleShape2D_8mkvc")

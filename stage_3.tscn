@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://bavlibdwfjdnh"]
+
+[ext_resource type="Script" path="res://stage_3.gd" id="1_bi0b1"]
+[ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="2_53l1g"]
+[ext_resource type="PackedScene" uid="uid://ofhywutmpmqg" path="res://map.tscn" id="3_yq758"]
+[ext_resource type="Texture2D" uid="uid://k1mqclfhi77x" path="res://Fence Block 1.png" id="4_n08f1"]
+[ext_resource type="Texture2D" uid="uid://7jrgiuyodbsk" path="res://Fence Block 2.png" id="5_wcbke"]
+[ext_resource type="Texture2D" uid="uid://byp5ogq4dcaqi" path="res://Isometric Grass Block 1.png" id="6_pgn1u"]
+[ext_resource type="Texture2D" uid="uid://qsjwlftjawi3" path="res://Isometric Tree 3x3 Block (1).png" id="7_firkp"]
+[ext_resource type="PackedScene" uid="uid://b7f1653id1i3k" path="res://player.tscn" id="8_npb2d"]
+[ext_resource type="PackedScene" uid="uid://dmt7lwup88f6r" path="res://ui.tscn" id="9_7mrs0"]
+[ext_resource type="PackedScene" uid="uid://mu4pg3pacwpv" path="res://enemy_3.tscn" id="9_p60wm"]
+[ext_resource type="PackedScene" uid="uid://bjktnyqj04sp4" path="res://enemy1.tscn" id="10_3ngtr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4md8"]
+texture = ExtResource("4_n08f1")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ttt61"]
+texture = ExtResource("5_wcbke")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p00o6"]
+texture = ExtResource("6_pgn1u")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_481kx"]
+texture = ExtResource("7_firkp")
+margins = Vector2i(0, 7)
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_u8ry6"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(64, 32)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_p00o6")
+sources/0 = SubResource("TileSetAtlasSource_v4md8")
+sources/1 = SubResource("TileSetAtlasSource_ttt61")
+sources/4 = SubResource("TileSetAtlasSource_481kx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7pv"]
+size = Vector2(1018.35, 25.7577)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mkvc"]
+size = Vector2(1495.01, 296.891)
+
+[node name="Stage3" type="Node2D" node_paths=PackedStringArray("enemy1", "enemy2", "enemy3", "enemy4", "enemy5")]
+script = ExtResource("1_bi0b1")
+enemy1 = NodePath("Enemy3_1")
+enemy2 = NodePath("Enemy3_2")
+enemy3 = NodePath("Enemy3_3")
+enemy4 = NodePath("Enemy1_1")
+enemy5 = NodePath("Enemy1_2")
+item = ExtResource("2_53l1g")
+enemy_count = 5
+
+[node name="YardMap1" parent="." instance=ExtResource("3_yq758")]
+tile_set = SubResource("TileSet_u8ry6")
+
+[node name="Player" parent="." instance=ExtResource("8_npb2d")]
+y_sort_enabled = true
+position = Vector2(383, 185)
+collision_mask = 9
+
+[node name="Enemy3_1" parent="." instance=ExtResource("9_p60wm")]
+position = Vector2(386, -107)
+
+[node name="Enemy3_2" parent="." instance=ExtResource("9_p60wm")]
+position = Vector2(936, 280)
+
+[node name="Enemy3_3" parent="." instance=ExtResource("9_p60wm")]
+position = Vector2(817, 343)
+
+[node name="Enemy1_1" parent="." instance=ExtResource("10_3ngtr")]
+position = Vector2(27, 392)
+
+[node name="Enemy1_2" parent="." instance=ExtResource("10_3ngtr")]
+position = Vector2(234, 489)
+
+[node name="Map Collisions" type="CharacterBody2D" parent="."]
+collision_layer = 231
+
+[node name="BottomLeftFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-36, 400)
+rotation = 0.461151
+shape = SubResource("RectangleShape2D_bs7pv")
+
+[node name="TopLeftFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(-23, -28)
+rotation = 2.68225
+shape = SubResource("RectangleShape2D_bs7pv")
+
+[node name="BottomRightFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(811, 398)
+rotation = 2.67755
+shape = SubResource("RectangleShape2D_bs7pv")
+
+[node name="TopRightFence" type="CollisionShape2D" parent="Map Collisions"]
+position = Vector2(819.663, -15.7727)
+rotation = 0.461151
+shape = SubResource("RectangleShape2D_bs7pv")
+
+[node name="OOB" type="CharacterBody2D" parent="Map Collisions" groups=["OutOfBounds"]]
+
+[node name="TopRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+position = Vector2(861, -167)
+rotation = 0.459854
+shape = SubResource("RectangleShape2D_8mkvc")
+
+[node name="TopLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+position = Vector2(-68, -179)
+rotation = -0.449501
+shape = SubResource("RectangleShape2D_8mkvc")
+
+[node name="BottomLeftOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+position = Vector2(-110, 532)
+rotation = 0.459854
+shape = SubResource("RectangleShape2D_8mkvc")
+
+[node name="BottomRightOOB" type="CollisionShape2D" parent="Map Collisions/OOB" groups=["OutOfBounds"]]
+position = Vector2(879, 537)
+rotation = -0.449501
+shape = SubResource("RectangleShape2D_8mkvc")
+
+[node name="UI" parent="." instance=ExtResource("9_7mrs0")]
+
+[node name="ItemSpawnPoint" type="Node2D" parent="."]
+position = Vector2(381, 183)

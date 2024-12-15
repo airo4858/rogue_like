@@ -1,13 +1,11 @@
 extends CharacterBody2D
-class_name Enemy2
+class_name Enemy3
 
 signal healthChanged
 signal enemyDeath
 
-#Add a functioning shooting state
-
-@export var max_hp: int = 6
-@export var hp: int = 6
+@export var max_hp: int = 4
+@export var hp: int = 4
 
 func hit(damage_number: int):
 	hp -= damage_number
@@ -15,3 +13,6 @@ func hit(damage_number: int):
 	if (hp <= 0):
 		queue_free()
 		enemyDeath.emit()
+
+func _on_attack_hurtbox_body_entered(body: Node2D) -> void:
+	body.hurt(2)

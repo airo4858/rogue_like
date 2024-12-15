@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7f1653id1i3k"]
+[gd_scene load_steps=20 format=3 uid="uid://b7f1653id1i3k"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_vwqdy"]
 [ext_resource type="PackedScene" uid="uid://biy3cquupk5n" path="res://items.tscn" id="2_1kybp"]
@@ -383,12 +383,30 @@ tracks/1/keys = {
 "values": [false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_18vpg"]
+resource_name = "speed_up"
+length = 0.166675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BetaSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xqj8h"]
 _data = {
 "RESET": SubResource("Animation_h6v7o"),
 "beta_jump": SubResource("Animation_derx3"),
 "extra_stab_attack": SubResource("Animation_ukr0e"),
 "extra_sweep_attack": SubResource("Animation_5tx8v"),
+"speed_up": SubResource("Animation_18vpg"),
 "stab_attack": SubResource("Animation_nj04u"),
 "sweep_attack": SubResource("Animation_at734")
 }

@@ -16,11 +16,12 @@ func initialize():
 func process_state(delta: float):
 	#print("Attacking")
 	leave_attack = attack.get_overlapping_bodies()
+	body.move_and_slide()
 	
 	if (not leave_attack.is_empty()):
-		body.move_and_slide()
 		if (can_attack == true):
 			can_attack = false
+			body.velocity = Vector2(0,0)
 			body.get_node("AttackAnimation").look_at(target.position)
 			attack_animation.play("enemy1_attack")
 			await attack_animation.animation_finished

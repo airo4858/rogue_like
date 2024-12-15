@@ -26,9 +26,9 @@ func pickup():
 		StageManager.extra_stab += 1
 	elif (item_number == 3):
 		StageManager.hp += 2
-		get_tree().get_root().get_node("Stage1/UI").gain_health(2)
+		get_tree().get_root().get_node( StageManager.current_stage + "/UI").gain_health(2)
 	elif (item_number == 4):
-		StageManager.move_speed += 20
+		StageManager.move_speed += 35
 	has_pickup = true
 	on_pick_up.emit()
 	queue_free()

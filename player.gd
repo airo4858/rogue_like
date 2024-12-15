@@ -8,6 +8,7 @@ var can_sweep : bool = true
 var can_stab : bool = true
 var targets : Array
 var knockback : Vector2 = Vector2(-1,-1)
+var speed_bool : bool = true
 
 signal switch_stage
 
@@ -65,7 +66,7 @@ func stab(event):
 func hurt(damage_number : int):
 	StageManager.hp -= damage_number
 	
-	get_tree().get_root().get_node( StageManager.current_stage +  "/UI").get_hurt(1)
+	get_tree().get_root().get_node( StageManager.current_stage +  "/UI").get_hurt(damage_number)
 	if (StageManager.hp <= 0):
 		self.visible = false
 		get_tree().get_root().get_node( StageManager.current_stage +  "/UI/GameOver").visible = true
@@ -76,6 +77,11 @@ func _physics_process(delta):
 	if velocity == Vector2(0,100) or velocity == Vector2(0,-100):
 		velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * StageManager.move_speed * Vector2(2,1.5)
 	move_and_slide()
+	
+	if StageManager.move_speed > 100.0:
+		if speed_bool == true:
+			$AnimationPlayer.play("speed_up")
+			speed_bool = false
 	
 	if (Input.is_action_pressed("jump")):
 		jump("jump")

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Enemy2
+class_name Enemy
 
 signal healthChanged
 signal enemyDeath

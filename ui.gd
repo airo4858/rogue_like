@@ -14,4 +14,5 @@ func gain_health(num : int):
 func _physics_process(delta: float):
 	if setup == true:
 		$Health.text = "Health: " + str(StageManager.hp)
+		$StageTracker.text = str(StageManager.current_stage)
 		setup = false
