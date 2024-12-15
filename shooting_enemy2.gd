@@ -31,6 +31,7 @@ func process_state(delta: float):
 		
 	leave_shooting = shootRange.get_overlapping_bodies()
 	if (leave_shooting.is_empty()):
+		await get_tree().create_timer(1.5).timeout
 		change_state.emit(chase_state, "Chasing")
 	
 func aim_and_shoot(delta):
